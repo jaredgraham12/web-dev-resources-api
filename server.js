@@ -1,7 +1,11 @@
 const express = require('express')
 const app = express()
+const cors = require('cors')
 const resources = require('./resources.js')
 const PORT = 8003
+
+
+app.use(cors())
 
 app.get('/', (req, res) => {
     res.sendFile(__dirname + '/index.html')
@@ -20,6 +24,6 @@ app.get('/api/resources/:topic', (req, res) => {
     }
 })
 
-app.listen(PORT, () => {
+app.listen(process.env.PORT || PORT, () => {
     console.log(`Listening on port ${PORT}`)
 })
